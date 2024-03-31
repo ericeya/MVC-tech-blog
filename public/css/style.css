@@ -98,7 +98,57 @@ header {
     border: 2px solid rgb(148, 148, 148);
     border-top: none;
     color: rgb(255, 255, 255);
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     padding: 1.5rem;
+    font-size: 1.2rem;
+}
+
+#blog-post-content-comment-header {
+    color: white; 
+    padding: 0.5rem;
+    background-color: #3823ac;
+    border-left: 2px solid rgb(148, 148, 148);
+    border-right: 2px solid rgb(148, 148, 148);
+}
+
+#blog-post-content-comment {
+    border: 2px solid rgb(148, 148, 148);
+    border-top: none;
+    color: rgb(255, 255, 255);
+    padding: 1.5rem;
+    font-size: 1.2rem;
+    padding-left: 3rem;
+}
+
+#new-post-btn {
+    margin-top: 1rem;
+    background-color: #5443b3;
+    color: white;
+}
+
+#sign-up-card {
+    border: 2px solid rgb(148, 148, 148);
+    border-top: none
+}
+
+#create-acct-btn {
+    background-color: #5443b3;
+    color: white;
+    margin-bottom: 1rem;
+    width: 97%;
+    font-size: 1.2rem;
+}
+
+#sign-up-card label {
+    font-size: 1.3rem
+}
+
+#login-instead {
+    color: white;
+    font-size: 1.2rem;
+}
+
+#sign-up-instead {
+    color: white;
     font-size: 1.2rem;
 }
