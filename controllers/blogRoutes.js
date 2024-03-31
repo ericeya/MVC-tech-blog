@@ -1,34 +1,33 @@
 const router = require('express').Router();
 const { User, Blogpost  } = require('../models');
 
-router.get('/', (req,res) => {
-  res.render('homepage')
+router.get('/', async (req,res) => {
+  try {
+    const blogPostData = await Blogpost.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['username']
+        }
+      ]
+    })
+    const blogPosts = blogPostData.map((blogpost) =>
+    blogpost.toJSON()
+    );
+
+    res.render('homepage', {
+      blogPosts,
+      loggedIn: req.session.loggedIn,
+    })
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err)
+  }
 })
-// ? GET all galleries for homepage
-// router.get('/', async (req, res) => {
-//   try {
-//     const dbGalleryData = await Gallery.findAll({
-//       include: [
-//         {
-//           model: Painting,
-//           attributes: ['filename', 'description'],
-//         },
-//       ],
-//     });
 
-//     const galleries = dbGalleryData.map((gallery) =>
-//       gallery.get({ plain: true })
-//     );
-
-//     res.render('homepage', {
-//       galleries,
-//       layout: "second"
-//     });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+router.get('/sess',  (req, res) => {
+  res.json(req.session)
+});
 
 // ? GET one gallery
 router.get('/gallery/:id', async (req, res) => {
@@ -71,5 +70,13 @@ router.get('/painting/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return
+  }
+  res.render('login')
+})
 
 module.exports = router;

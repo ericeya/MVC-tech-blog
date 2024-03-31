@@ -41,9 +41,7 @@ header {
     border-bottom: 2px solid rgb(148, 148, 148)
 }
 
-#logout-btn {
-    display: none;
-}
+
 
 .techblog-title {
     display: inline-block;
