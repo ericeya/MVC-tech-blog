@@ -19,7 +19,7 @@ body {
     color: white;
 }
 
-.nav-item a {
+.nav-item a, .nav-item button {
     color: white;
     padding: 2rem;
     font-size: 24px;
@@ -129,7 +129,7 @@ header {
     border-top: none
 }
 
-#create-acct-btn {
+#create-acct-btn, #login-btn {
     background-color: #5443b3;
     color: white;
     margin-bottom: 1rem;

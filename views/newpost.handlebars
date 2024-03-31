@@ -1,19 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="col-6" id="blog-post-card">
-      <p>Login</p>
+      <p>New Blog Post!</p>
     </div>
     <div class="col-6" id="blog-post-card-post">
       <p></p>
     </div>
-    <form class="col-12 login-form" id="sign-up-card">
+    <form class="col-12 blog-post-form" id="sign-up-card">
       <div class="pb-3" style="padding-left: 0; padding-right: 0">
-        <label for="emailInput" class="form-label text-white mt-3 mx-3">Email address</label>
-        <input type="email" class="form-control mx-3" style="width:20rem" id="emailInput"
-          placeholder="name@example.com">
+        <label for="newblog-title" class="form-label text-white mt-3 mx-3">Title</label>
+        <input type="text" class="form-control mx-3" style="width:97%" id="titleInput"
+          placeholder="Tech blog is cool!">
       </div>
-      <label for="inputPassword5" class="form-label text-white mx-3">Password</label>
-      <input type="password" id="inputPassword5" class="form-control mx-3" style="width:20rem"
+      <label for="blogcontent" class="form-label text-white mx-3">Content</label>
+      <textarea id="blogcontent" class="form-control mx-3" style="width:20rem"
         aria-describedby="passwordHelpBlock">
       <div id="passwordHelpBlock" class="form-text text-white mx-3 mb-4">
 
@@ -30,4 +30,4 @@
   </div>
 </div>
 
-<script src="/js/login.js"></script>
+<script src="/js/newpost.js"></script>

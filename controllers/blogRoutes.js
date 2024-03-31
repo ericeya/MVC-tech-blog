@@ -1,20 +1,14 @@
 const router = require('express').Router();
 const { User, Blogpost  } = require('../models');
+const withAuth = require('../utils/auth')
 
 router.get('/', async (req,res) => {
   try {
-    const blogPostData = await Blogpost.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['username']
-        }
-      ]
-    })
+    const blogPostData = await Blogpost.findAll()
     const blogPosts = blogPostData.map((blogpost) =>
     blogpost.toJSON()
     );
-
+    console.log(blogPosts)
     res.render('homepage', {
       blogPosts,
       loggedIn: req.session.loggedIn,
@@ -25,51 +19,27 @@ router.get('/', async (req,res) => {
   }
 })
 
+// router.get('/apiuser', async (req,res) => {
+//   try {
+//     const blogPostData = await Blogpost.findAll({
+//       include: [
+//         {
+//           model: User,
+//           attributes: ['username']
+//         }
+//       ]
+//     })
+//     res.json(blogPostData)
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err)
+//   }
+// })
+
 router.get('/sess',  (req, res) => {
   res.json(req.session)
 });
 
-// ? GET one gallery
-router.get('/gallery/:id', async (req, res) => {
-  try {
-    const dbGalleryData = await Gallery.findByPk(req.params.id, {
-      include: [
-        {
-          model: Painting,
-          attributes: [
-            'id',
-            'title',
-            'artist',
-            'exhibition_date',
-            'filename',
-            'description',
-          ],
-        },
-      ],
-    });
-
-    const gallery = dbGalleryData.get({ plain: true });
-    console.log(gallery)
-    res.render('gallery', { gallery });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
-// ? GET one painting
-router.get('/painting/:id', async (req, res) => {
-  try {
-    const dbPaintingData = await Painting.findByPk(req.params.id);
-
-    const painting = dbPaintingData.get({ plain: true });
-
-    res.render('painting', { painting });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
@@ -78,5 +48,36 @@ router.get('/login', (req, res) => {
   }
   res.render('login')
 })
+
+router.get('/dashboard', withAuth, async (req, res) => {
+  try {
+    const myBlogPostData = await Blogpost.findAll({
+      where: {
+        user_id: 1
+      }
+    })
+    const myBlogPosts = myBlogPostData.map((myblogpost) =>
+    myblogpost.toJSON()
+    );
+    console.log(myBlogPosts)
+    console.log(req.session)
+    res.render('dashboard', {
+      myBlogPosts,
+      loggedIn: req.session.loggedIn,
+    })
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err)
+  }
+})
+
+router.get('/createacct', async (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/')
+    return
+  }
+  res.render('createacct')
+})
+
 
 module.exports = router;
