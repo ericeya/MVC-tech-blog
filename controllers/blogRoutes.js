@@ -19,22 +19,6 @@ router.get('/', async (req,res) => {
   }
 })
 
-// router.get('/apiuser', async (req,res) => {
-//   try {
-//     const blogPostData = await Blogpost.findAll({
-//       include: [
-//         {
-//           model: User,
-//           attributes: ['username']
-//         }
-//       ]
-//     })
-//     res.json(blogPostData)
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err)
-//   }
-// })
 
 router.get('/sess',  (req, res) => {
   res.json(req.session)
@@ -42,10 +26,10 @@ router.get('/sess',  (req, res) => {
 
 
 router.get('/login', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/');
-    return
-  }
+  // if (req.session.loggedIn) {
+  //   res.redirect('/');
+  //   return
+  // }
   res.render('login')
 })
 

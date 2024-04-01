@@ -129,7 +129,7 @@ header {
     border-top: none
 }
 
-#create-acct-btn, #login-btn {
+#create-acct-btn, #login-btn, #submit-btn {
     background-color: #5443b3;
     color: white;
     margin-bottom: 1rem;

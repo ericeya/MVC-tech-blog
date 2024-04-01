@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6" id="blog-post-card">
+            <p>{{blogPost.title}}</p>
+        </div>
+        <div class="col-6" id="blog-post-card-post">
+            <p>posted by {{userName.username}} on {{blogPost.date}}</p>
+        </div>
+        <div class="col-12" id="blog-post-content">
+            {{blogPost.content}}
+        </div>
+        <div class="col-12" id="blog-post-content-comment-header">
+            Comments
+        </div>
+        <div class="col-12" id="blog-post-content-comment">
+            this is a very cool post!
+            by: Daniel Lee - 3/30/2024
+        </div>
+        <div class="col-12" id="blog-post-content-comment">
+            this is a very cool post!
+            by: Daniel Lee - 3/30/2024
+        </div>
+        <form class="col-12 new-comment-form" id="sign-up-card">
+          <label for="blogpost-comment" class="form-label text-white mt-2 mx-3">Comment</label>
+          <textarea id="blogpost-comment" class="form-control mx-3 mb-3" style="width:97%"></textarea>
+          
+          <div class="d-flex justify-content-center">
+            <input type="submit" value="Submit" class="btn" id="submit-btn" type="button"></input>
+          </div>
+          
+        </form>
+    </div>
+</div>
+
+<script src="/js/postcomment.js"></script>
