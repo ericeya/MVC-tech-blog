@@ -53,17 +53,18 @@ router.get('/dashboard', withAuth, async (req, res) => {
   try {
     const myBlogPostData = await Blogpost.findAll({
       where: {
-        user_id: 1
+        user_id: req.session.user.id
       }
     })
     const myBlogPosts = myBlogPostData.map((myblogpost) =>
     myblogpost.toJSON()
     );
     console.log(myBlogPosts)
-    console.log(req.session)
+    // console.log(req.session)
     res.render('dashboard', {
       myBlogPosts,
       loggedIn: req.session.loggedIn,
+      layout: 'dashboard.handlebars'
     })
   } catch (err) {
     console.log(err);

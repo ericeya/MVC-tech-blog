@@ -12,7 +12,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Madimi+One&family=Meera+Inimai&family=Ysabeau:ital,wght@0,1..1000;1,1..1000&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="../../public/css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
 
 </head>
 
@@ -29,17 +29,20 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="#" id="nav-btns">Home</a>
+                <a class="nav-link" href="/" id="nav-btns">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#" id="nav-btns">Dashboard</a>
+                <a class="nav-link" href="/dashboard" id="nav-btns">Dashboard</a>
               </li>
+              {{#if loggedIn}}
               <li class="nav-item">
-                <a class="nav-link" href="#" id="nav-btns">Login</a>
+                <button class="nav-link" href="/logout" id="logout-btn">Logout</button>
               </li>
+              {{else}}
               <li class="nav-item">
-                <a class="nav-link" href="#" id="logout-btn">Logout</a>
+                <a class="nav-link" href="/login" id="nav-btns">Login</a>
               </li>
+              {{/if}}
             </ul>
           </div>
         </div>
@@ -50,42 +53,6 @@
 
   <main>
     {{{body}}}
-    <div class="container">
-      <div class="row">
-        <!-- this is where you enter your existing blog posts -->
-        <div class="col-6" id="blog-post-card">
-          <p>Why MVC is so important</p>
-        </div>
-        <div class="col-6" id="blog-post-card-post">
-          <p>posted by Eric Lee on 3/30/2024</p>
-        </div>
-        <div class="col-12" id="blog-post-content">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab maxime excepturi molestias itaque saepe expedita
-          libero. Libero illo est eveniet doloremque obcaecati? Culpa corrupti vel, earum rerum autem cupiditate minima?
-        </div>
-        <div class="col-12" id="blog-post-content-comment-header">
-          Comments
-        </div>
-        <div class="col-12" id="blog-post-content-comment">
-          this is a very cool post!
-          by: Daniel Lee - 3/30/2024
-        </div>
-        <div class="col-12" id="blog-post-content-comment">
-          this is a very cool post!
-          by: Daniel Lee - 3/30/2024
-        </div>
-
-        <!-- button area -->
-        <div class="d-grid col-2 mx-auto">
-          <button class="btn" id="new-post-btn" type="button">+ New Post</button>
-        </div>
-        
-
-
-
-      </div>
-
-    </div>
   </main>
 
 
@@ -93,6 +60,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+     {{#if loggedIn}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
 </body>
 
 </html>
