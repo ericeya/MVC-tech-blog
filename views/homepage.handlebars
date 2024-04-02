@@ -6,7 +6,7 @@
             <a href="/api/blogpost/{{blogpost.id}}"><p>{{blogpost.title}}</p></a>
         </div>
         <div class="col-6" id="blog-post-card-post">
-            <p>posted by {{userName.username}} on {{blogpost.date}}</p>
+            <p>posted by {{blogpost.user.username}} on {{blogpost.date}}</p>
         </div>
         <div class="col-12" id="blog-post-content">
             {{blogpost.content}}

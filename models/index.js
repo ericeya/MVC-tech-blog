@@ -10,7 +10,7 @@ Comment.belongsTo(Blogpost)
 
 Comment.belongsTo(User)
 
-Blogpost.hasOne(User)
+Blogpost.belongsTo(User)
 
 User.hasMany(Blogpost)
 

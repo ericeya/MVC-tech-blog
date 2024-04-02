@@ -5,7 +5,9 @@ const dayjs = require('dayjs')
 
 router.get('/', async (req,res) => {
   try {
-    const blogPostData = await Blogpost.findAll()
+    const blogPostData = await Blogpost.findAll({
+      include: [User]
+    })
     const blogPosts = blogPostData.map((blogpost) =>
     blogpost.toJSON()
     );
@@ -13,14 +15,14 @@ router.get('/', async (req,res) => {
       blogPosts[i].date = dayjs(blogPosts[i].date).format("dddd MMMM DD, YYYY")
     }
 
-    const blogPostUsers = await User.findAll()
-    const userName = blogPostUsers.map((user) => user.toJSON())
+    // const blogPostUsers = await User.findAll()
+    // const userName = blogPostUsers.map((user) => user.toJSON())
 
     console.log(blogPosts)
-    console.log(userName)
+    // console.log(userName)
     res.render('homepage', {
       blogPosts,
-      userName,
+      // userName,
       loggedIn: req.session.loggedIn,
     })
   } catch (err) {
