@@ -6,6 +6,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)<br><br>
 
 This website is a tech blog where people can create an account and post blogs about tech or just anything in general! Users are able to edit or delete content and comment on other people's posts as well.
+# Deployment
+
+[Click here for deployed page!](https://mvc-tech-blog-t38a.onrender.com/)
 
 # Table of Contents
 
@@ -59,6 +62,7 @@ This website is a tech blog where people can create an account and post blogs ab
 # Usage
 
 This web app will help people interact with each other through blog posts / comments because sharing ideas and thoughts is cool!
+
 
 - Below is sample demo.<br><br>
 ![demo](./asset/images/demo.gif)
