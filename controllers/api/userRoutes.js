@@ -25,6 +25,17 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/:id', async (req, res) => {
+  try {
+    const singleUser = await User.findByPk(req.params.id)
+    const user = singleUser.toJSON()
+    res.json(user)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+})
+
 // Login
 router.post('/login', async (req, res) => {
   try {
@@ -65,10 +76,11 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.get('/userlist', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
       const userData = await User.findAll();
-      res.json(userData)
+      const users = userData.map(user=> user.toJSON())
+      res.json(users)
       // const users = userData.map((user) =>
       //   user.get({ plain: true })
       // );

@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const { User, Blogpost  } = require('../models');
+const { Comment, Blogpost, User  } = require('../models');
 const withAuth = require('../utils/auth')
+const dayjs = require('dayjs')
 
 router.get('/', async (req,res) => {
   try {
@@ -8,9 +9,18 @@ router.get('/', async (req,res) => {
     const blogPosts = blogPostData.map((blogpost) =>
     blogpost.toJSON()
     );
+    for (let i = 0; i < blogPosts.length; i++) {
+      blogPosts[i].date = dayjs(blogPosts[i].date).format("dddd MMMM DD, YYYY")
+    }
+
+    const blogPostUsers = await User.findAll()
+    const userName = blogPostUsers.map((user) => user.toJSON())
+
     console.log(blogPosts)
+    console.log(userName)
     res.render('homepage', {
       blogPosts,
+      userName,
       loggedIn: req.session.loggedIn,
     })
   } catch (err) {
@@ -26,10 +36,6 @@ router.get('/sess',  (req, res) => {
 
 
 router.get('/login', (req, res) => {
-  // if (req.session.loggedIn) {
-  //   res.redirect('/');
-  //   return
-  // }
   res.render('login')
 })
 
@@ -38,15 +44,21 @@ router.get('/dashboard', withAuth, async (req, res) => {
     const myBlogPostData = await Blogpost.findAll({
       where: {
         user_id: req.session.user.id
-      }
+      },
+      include: [User]
     })
-    const myBlogPosts = myBlogPostData.map((myblogpost) =>
+    const blogPost = myBlogPostData.map((myblogpost) =>
     myblogpost.toJSON()
     );
-    console.log(myBlogPosts)
-    // console.log(req.session)
+
+    for (let i = 0; i < blogPost.length; i++) {
+      blogPost[i].date = dayjs(blogPost[i].date).format("dddd MMMM DD, YYYY")
+    }
+
+    
+
     res.render('dashboard', {
-      myBlogPosts,
+      blogPost,
       loggedIn: req.session.loggedIn,
       layout: 'dashboard.handlebars'
     })

@@ -12,24 +12,37 @@
         <div class="col-12" id="blog-post-content-comment-header">
             Comments
         </div>
+        {{#each blogPostComment as |comment|}}
         <div class="col-12" id="blog-post-content-comment">
-            this is a very cool post!
-            by: Daniel Lee - 3/30/2024
+            {{comment.content}}
+            <hr>
+            by: <span style="font-style: italic; font-size: 1.2rem">{{comment.user.username}}</span> on <span
+                style="text-decoration:underline">{{comment.createdAt}}</span>
         </div>
-        <div class="col-12" id="blog-post-content-comment">
-            this is a very cool post!
-            by: Daniel Lee - 3/30/2024
-        </div>
+        {{/each}}
         <form class="col-12 new-comment-form" id="sign-up-card">
-          <label for="blogpost-comment" class="form-label text-white mt-2 mx-3">Comment</label>
-          <textarea id="blogpost-comment" class="form-control mx-3 mb-3" style="width:97%"></textarea>
-          
-          <div class="d-flex justify-content-center">
-            <input type="submit" value="Submit" class="btn" id="submit-btn" type="button"></input>
-          </div>
-          
+            <label for="blogpost-comment" class="form-label text-white mt-2 mx-3">Comment</label>
+            <textarea id="blogpost-comment" class="form-control mx-3 mb-3" style="width:97%"></textarea>
+
+            <div class="d-flex justify-content-center">
+                <input type="submit" value="Submit" class="btn" id="submit-btn" type="button"></input>
+                <input type="hidden" value="{{blogPost.id}}" id="blog-post-id"></input>
+            </div>
         </form>
+        {{!-- only display below buttons if the viewer and blog post owner is the same --}}
+        {{#if sameUser}}
+        <div class="d-flex justify-content-center align-items-center">
+            <button class="btn" id="edit-post-btn">Edit Post</button>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+            <button class="btn" id="delete-post-btn">Delete Post</button>
+        </div>
+        {{/if}}
     </div>
 </div>
 
 <script src="/js/postcomment.js"></script>
+{{#if sameUser}}
+<script src="/js/editpost.js"></script>
+<script src="/js/deletepost.js"></script>
+{{/if}}
