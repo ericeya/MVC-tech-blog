@@ -65,8 +65,7 @@ This web app will help people interact with each other through blog posts / comm
 
 
 - Below is sample demo.<br><br>
-![demo](./asset/images/demo.gif)
-![demo](./asset/images/demo2.gif)
+![demo](./assets/mvc-tech-demo.gif)
 
 # License
 
